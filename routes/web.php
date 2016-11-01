@@ -11,14 +11,27 @@
 |
 */
 
+
+Route::get('/', function () {
+
+    return view('welcome');
+});
+
+Route::get('/test', function () {
+
+    return view('welcome');
+});
+
+Route::get('test', 'Admin\IndexController@index');
+
 /*
  *参数约束
  */
-
+/*
 Route::get('user/{id}', function ($id) {
     return 'User '.$id;
 })->where('id','[0-9]+');
-
+*/
 
 
 /**
@@ -53,10 +66,7 @@ Route::get('posts/{post}/comments/{comment}', function ($postId, $commentId) {
  * */
 
 /*
-Route::get('/', function () {
 
-    return view('welcome');
-});
 
 Route::get('/hd', function () {
 
