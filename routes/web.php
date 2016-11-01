@@ -10,7 +10,79 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+/**
+ * 可选参数
+ */
 
+Route::get('user/{id?}', function ($id = 0) {
+    return 'User '.$id;
+});
+
+Route::get('posts/{post}/comments/{comment?}', function ($postId, $commentId=null) {
+
+    return $postId."-----".$commentId;
+});
+
+/**
+ * 必选参数
+ */
+/**
+Route::get('user/{id}', function ($id) {
+    return 'User '.$id;
+});
+
+Route::get('posts/{post}/comments/{comment}', function ($postId, $commentId) {
+
+    return $commentId;
+});
+ */
+
+
+/*基本路由的练习
+ * */
+
+/*
 Route::get('/', function () {
+
     return view('welcome');
 });
+
+Route::get('/hd', function () {
+
+    return  "get";
+});
+
+Route::post('/hd', function () {
+
+    return  "post";
+});
+
+Route::put('/hd', function () {
+
+    return  "put";
+});
+
+Route::delete('/hd', function () {
+
+    return  "delete";
+});
+
+Route::patch('/hd', function () {
+
+    return  "patch";
+});
+
+Route::options('/hd', function () {
+
+    return  "options";
+});
+
+Route::match(['get','post'],'/test',function(){
+    echo "match";
+});
+
+Route::any('foo',function(){
+    echo "foo";
+});
+
+*/
