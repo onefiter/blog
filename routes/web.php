@@ -10,10 +10,21 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+
+/*
+ *参数约束
+ */
+
+Route::get('user/{id}', function ($id) {
+    return 'User '.$id;
+})->where('id','[0-9]+');
+
+
+
 /**
  * 可选参数
  */
-
+/*
 Route::get('user/{id?}', function ($id = 0) {
     return 'User '.$id;
 });
@@ -22,7 +33,7 @@ Route::get('posts/{post}/comments/{comment?}', function ($postId, $commentId=nul
 
     return $postId."-----".$commentId;
 });
-
+*/
 /**
  * 必选参数
  */
