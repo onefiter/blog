@@ -13,13 +13,33 @@
 
 
 Route::get('/', function () {
-
+    //7.1设置session
+    session(["key"=>123]);
     return view('welcome');
 });
 
 Route::get('/test', function () {
+    //7.2取session
+    echo session('key');
 
-    return view('welcome');
+    return 'test';
+});
+/***
+ * 7.中间件
+ */
+Route::group(['prefix'=> 'admin','namespace'=>'Admin','middleware'=>'web'], function(){
+    Route::get('/', function () {
+        //7.1设置session
+        session(["key"=>123]);
+        return view('welcome');
+    });
+
+    Route::get('/test', function () {
+        //7.2取session
+        echo session('key');
+
+        return 'test';
+    });
 });
 
 /*6.路由分组:解决有共同前缀和命名空间的问题,可以用路由分组功能
@@ -31,6 +51,7 @@ Route::get('admin/login', 'Admin\IndexController@login');
 Route::get('admin/index', 'Admin\IndexController@index');
 */
 //2)路由分组的方式
+/*
 Route::group(['prefix'=> 'admin','namespace'=>'Admin'], function(){
     Route::get('login', 'IndexController@login');
 
@@ -38,6 +59,7 @@ Route::group(['prefix'=> 'admin','namespace'=>'Admin'], function(){
     //资源路由
     Route::resource('article','ArticleController');
 });
+*/
 //3)子域名路由分组
 /*5.路由命名
  * */
