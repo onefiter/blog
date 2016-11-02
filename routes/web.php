@@ -32,6 +32,7 @@ Route::get('/test', function () {
 
 Route::get('test', ['as'=>'profile','uses'=>'Admin\IndexController@index']);
 
+Route::get('test', 'UserController@showProfile')->name('profile');
 /*
  *参数约束
  */
