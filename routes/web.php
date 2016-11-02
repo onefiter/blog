@@ -22,7 +22,15 @@ Route::get('/test', function () {
     return view('welcome');
 });
 
-Route::get('test', 'Admin\IndexController@index');
+//Route::get('test', 'Admin\IndexController@index');
+
+//Route::get('user', ['as'=>'profile',function(){
+//
+//    echo route('profile');//http://blog.hd/user
+//
+//}]);
+
+Route::get('test', ['as'=>'profile','uses'=>'Admin\IndexController@index']);
 
 /*
  *参数约束
