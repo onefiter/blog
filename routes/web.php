@@ -22,6 +22,26 @@ Route::get('/test', function () {
     return view('welcome');
 });
 
+/*6.路由分组:解决有共同前缀和命名空间的问题,可以用路由分组功能
+ * */
+//1)原先的方式
+/*
+Route::get('admin/login', 'Admin\IndexController@login');
+
+Route::get('admin/index', 'Admin\IndexController@index');
+*/
+//2)路由分组的方式
+Route::group(['prefix'=> 'admin','namespace'=>'Admin'], function(){
+    Route::get('login', 'IndexController@login');
+
+    Route::get('index', 'IndexController@index');
+    //资源路由
+    Route::resource('article','ArticleController');
+});
+//3)子域名路由分组
+/*5.路由命名
+ * */
+/*
 //Route::get('test', 'Admin\IndexController@index');
 
 //Route::get('user', ['as'=>'profile',function(){
@@ -30,11 +50,12 @@ Route::get('/test', function () {
 //
 //}]);
 
-Route::get('test', ['as'=>'profile','uses'=>'Admin\IndexController@index']);
-
-Route::get('test', 'UserController@showProfile')->name('profile');
+//Route::get('test', ['as'=>'profile','uses'=>'Admin\IndexController@index']);
+//这种命名路由比较直观
+Route::get('test', 'Admin\IndexController@index')->name('profile');
+*/
 /*
- *参数约束
+ *4.参数约束
  */
 /*
 Route::get('user/{id}', function ($id) {
@@ -44,7 +65,7 @@ Route::get('user/{id}', function ($id) {
 
 
 /**
- * 可选参数
+ * 3.可选参数
  */
 /*
 Route::get('user/{id?}', function ($id = 0) {
@@ -57,7 +78,7 @@ Route::get('posts/{post}/comments/{comment?}', function ($postId, $commentId=nul
 });
 */
 /**
- * 必选参数
+ * 2.必选参数
  */
 /**
 Route::get('user/{id}', function ($id) {
@@ -71,7 +92,7 @@ Route::get('posts/{post}/comments/{comment}', function ($postId, $commentId) {
  */
 
 
-/*基本路由的练习
+/*1.基本路由的练习
  * */
 
 /*
