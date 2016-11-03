@@ -75,7 +75,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <?php echo $name; ?>
+                    <?php echo $data["name"]; ?>
                 </div>
 
                 <div class="links">
