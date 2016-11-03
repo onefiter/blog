@@ -12,7 +12,7 @@
 */
 
 
-
+/*
 Route::get('/', function () {
     //7.1设置session
     session(["key"=>123]);
@@ -25,6 +25,7 @@ Route::get('/test', function () {
 
     return 'test';
 });
+*/
 /***
  * 7.中间件:只有使用web中间件才能使用session和CSRF的保护
  */
@@ -164,7 +165,7 @@ Route::any('foo',function(){
 /*
  *8.中间件的命令行形式php artisan make:middleware AdminLogin,需要在Kernel.php中定义的相关的中间件
  * **/
-
+/*
 Route::group(['middleware'=>['web','admin.login']],function(){
     Route::get('/',function(){
         session(['key'=>456]);
@@ -175,3 +176,9 @@ Route::group(['middleware'=>['web','admin.login']],function(){
         echo session('key');
     });
 });
+*/
+/*9.模板引擎
+ * */
+
+//9.1 通过路由调用控制器,然后控制器渲染视图
+Route::get('view','ViewController@index');
