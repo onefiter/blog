@@ -12,6 +12,7 @@
 */
 
 
+
 Route::get('/', function () {
     //7.1设置session
     session(["key"=>123]);
@@ -25,7 +26,7 @@ Route::get('/test', function () {
     return 'test';
 });
 /***
- * 7.中间件
+ * 7.中间件:只有使用web中间件才能使用session和CSRF的保护
  */
 Route::group(['prefix'=> 'admin','namespace'=>'Admin','middleware'=>'web'], function(){
     Route::get('/', function () {
@@ -56,7 +57,7 @@ Route::group(['prefix'=> 'admin','namespace'=>'Admin'], function(){
     Route::get('login', 'IndexController@login');
 
     Route::get('index', 'IndexController@index');
-    //资源路由
+    //资源路由,用php artisan make:controller Article,用php artisan route:list 查看路由列表
     Route::resource('article','ArticleController');
 });
 */
@@ -159,3 +160,18 @@ Route::any('foo',function(){
 });
 
 */
+
+/*
+ *8.中间件的命令行形式php artisan make:middleware AdminLogin,需要在Kernel.php中定义的相关的中间件
+ * **/
+
+Route::group(['middleware'=>['web','admin.login']],function(){
+    Route::get('/',function(){
+        session(['key'=>456]);
+        return view('welcome');
+    });
+
+    Route::get('/test',function(){
+        echo session('key');
+    });
+});
